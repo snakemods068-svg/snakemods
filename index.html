@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNAKE MODS OFC | PREMIUM ACCESS</title>
+    <style>
+        :root {
+            --neon-cyan: #00f2ff;
+            --neon-purple: #8e2de2;
+            --bg-dark: #020205;
+            --warning-gold: #ffea00;
+        }
+
+        body {
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 242, 255, 0.15) 0, transparent 50%), 
+                radial-gradient(at 100% 100%, rgba(142, 45, 226, 0.15) 0, transparent 50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 340px;
+            background: rgba(10, 10, 20, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 242, 255, 0.4);
+            border-radius: 25px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
+            color: white;
+            z-index: 1;
+        }
+
+        .logo-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--neon-cyan);
+        }
+
+        .logo-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        h2 { color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 2px; font-size: 1.2rem; }
+
+        .terminal {
+            background: rgba(0, 0, 0, 0.9);
+            border-left: 3px solid var(--neon-cyan);
+            height: 60px;
+            text-align: left;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 0.7rem;
+            margin-bottom: 10px;
+            color: #00ffaa;
+            overflow-y: auto;
+        }
+
+        .key-display {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px dashed var(--neon-cyan);
+            padding: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+        }
+
+        .btn-gate { background: linear-gradient(135deg, #ff8c00, #ff4500); }
+        .btn-gen { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
+        .btn-gen:disabled { opacity: 0.3; cursor: not-allowed; }
+        
+        #toast {
+            visibility: hidden;
+            background: var(--neon-cyan);
+            color: black;
+            padding: 10px;
+            position: fixed;
+            bottom: 20px;
+            border-radius: 20px;
+        }
+        #toast.show { visibility: visible; }
+    </style>
+</head>
+<body>
+
+<div id="toast">ACTION SUCCESSFUL!</div>
+
+<div class="container">
+    <div class="logo-container">
+        <img src="https://i.supaimg.com/9f7634ce-5a01-4cbd-96ff-9200a005f5e1/e24afaff-1125-4537-90a6-928216cd49d0.png">
+    </div>
+
+    <h2>SNAKE MODS OFC</h2>
+
+    <div class="terminal" id="terminal">
+        [#] System: Ready...<br>
+        [#] Step 1: Open Gatekeeper
+    </div>
+
+    <div class="key-display" id="keyBox" style="color: grey;">--- LOCKED ---</div>
+    
+    <button class="btn btn-gate" id="gateBtn" onclick="openGatekeeper()">1. OPEN GATEKEEPER (AD)</button>
+    <button class="btn btn-gen" id="genBtn" onclick="generateKey()" disabled>2. GENERATE KEY</button>
+    <button class="btn" style="background:rgba(255,255,255,0.1)" onclick="copyKey()">3. COPY KEY</button>
+
+</div>
+
+<script>
+    // --- SETUP ---
+    // 1. Just2Earn par jayein, apne GitHub link ke peeche ?verified=true lagakar shorten karein.
+    // 2. Wo short link yahan niche paste karein.
+    const adLink = "YAHAN_APNA_JUST2EARN_LINK_DALEIN"; 
+
+    const terminal = document.getElementById('terminal');
+    const keyBox = document.getElementById('keyBox');
+    const genBtn = document.getElementById('genBtn');
+    const gateBtn = document.getElementById('gateBtn');
+
+    function log(msg) {
+        terminal.innerHTML += `<br>[#] ${msg}`;
+        terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    // Page Load hote hi check karega ki user ad dekh kar aaya hai ya nahi
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('verified')) {
+            unlockEverything();
+            log("System: Ad Verified via Redirect!");
+        }
+    }
+
+    function openGatekeeper() {
+        if(adLink === "YAHAN_APNA_JUST2EARN_LINK_DALEIN") {
+            alert("Admin: Pehle Just2Earn link code mein update karein!");
+            return;
+        }
+        window.open(adLink, '_blank');
+        log("Ad link opened. Wait for redirect or 20s...");
+        
+        // Timer as a backup
+        setTimeout(() => {
+            unlockEverything();
+        }, 20000); 
+    }
+
+    function unlockEverything() {
+        localStorage.setItem("snake_verified", "true");
+        genBtn.disabled = false;
+        gateBtn.innerText = "STEP 1: COMPLETED ✅";
+        gateBtn.style.background = "#00ffaa";
+        log("Generator Unlocked!");
+    }
+
+    function generateKey() {
+        const chars = "ABC123XYZ";
+        let res = "";
+        for(let i=0; i<6; i++) res += chars[Math.floor(Math.random()*chars.length)];
+        const fullKey = "SNAKE_" + res + "_MODS";
+        
+        keyBox.innerText = fullKey;
+        keyBox.style.color = "var(--neon-cyan)";
+        log("Key Generated: " + fullKey);
+    }
+
+    function copyKey() {
+        if(keyBox.innerText.includes("LOCKED")) return;
+        navigator.clipboard.writeText(keyBox.innerText);
+        alert("Key Copied!");
+    }
+</script>
+</body>
+</html>
