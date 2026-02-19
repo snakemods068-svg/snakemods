@@ -3,192 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNAKE MODS OFC | PREMIUM ACCESS</title>
+    <title>SNAKE MODS | VIP SYSTEM</title>
     <style>
         :root {
-            --neon-cyan: #00f2ff;
-            --neon-purple: #8e2de2;
-            --bg-dark: #020205;
-            --warning-gold: #ffea00;
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --bg: #050505;
         }
 
         body {
-            background: var(--bg-dark);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(0, 242, 255, 0.15) 0, transparent 50%), 
-                radial-gradient(at 100% 100%, rgba(142, 45, 226, 0.15) 0, transparent 50%);
+            background: var(--bg);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 340px;
-            background: rgba(10, 10, 20, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 242, 255, 0.4);
-            border-radius: 25px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
-            color: white;
-            z-index: 1;
-        }
-
-        .logo-container {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 10px;
-            border-radius: 50%;
             overflow: hidden;
-            border: 2px solid var(--neon-cyan);
         }
 
-        .logo-container img { width: 100%; height: 100%; object-fit: cover; }
-
-        h2 { color: var(--neon-cyan); text-transform: uppercase; letter-spacing: 2px; font-size: 1.2rem; }
-
-        .terminal {
-            background: rgba(0, 0, 0, 0.9);
-            border-left: 3px solid var(--neon-cyan);
-            height: 60px;
-            text-align: left;
-            padding: 10px;
-            font-family: monospace;
-            font-size: 0.7rem;
-            margin-bottom: 10px;
-            color: #00ffaa;
-            overflow-y: auto;
+        /* Neon Glow Background */
+        .bg-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.2;
+            z-index: -1;
         }
 
-        .key-display {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px dashed var(--neon-cyan);
-            padding: 10px;
+        .card {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-size: 2.5rem;
             margin-bottom: 10px;
-            font-weight: bold;
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .status-box {
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .key-box {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            color: #555;
+            border: 1px dashed #444;
         }
 
         .btn {
             width: 100%;
-            padding: 12px;
-            margin: 5px 0;
+            padding: 15px;
             border: none;
-            border-radius: 10px;
+            border-radius: 15px;
             font-weight: bold;
             cursor: pointer;
-            color: white;
+            transition: 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
         }
 
-        .btn-gate { background: linear-gradient(135deg, #ff8c00, #ff4500); }
-        .btn-gen { background: linear-gradient(135deg, #00d2ff, #3a7bd5); }
-        .btn-gen:disabled { opacity: 0.3; cursor: not-allowed; }
-        
-        #toast {
-            visibility: hidden;
-            background: var(--neon-cyan);
-            color: black;
-            padding: 10px;
-            position: fixed;
-            bottom: 20px;
-            border-radius: 20px;
+        .btn-ad { background: linear-gradient(90deg, #ff4b2b, #ff416c); color: white; }
+        .btn-gen { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white; }
+        .btn-gen:disabled { background: #222; color: #555; cursor: not-allowed; }
+
+        .btn:active { transform: scale(0.95); }
+
+        #verified-badge {
+            display: none;
+            color: #00ffaa;
+            font-size: 0.9rem;
+            margin-top: 10px;
         }
-        #toast.show { visibility: visible; }
     </style>
 </head>
 <body>
 
-<div id="toast">ACTION SUCCESSFUL!</div>
+<div class="bg-glow"></div>
 
-<div class="container">
-    <div class="logo-container">
-        <img src="https://i.supaimg.com/9f7634ce-5a01-4cbd-96ff-9200a005f5e1/e24afaff-1125-4537-90a6-928216cd49d0.png">
-    </div>
+<div class="card">
+    <div class="logo">🐍</div>
+    <h2 style="margin:0; color:var(--primary);">SNAKE MODS</h2>
+    <p style="color:#aaa; font-size:0.9rem; margin-bottom:20px;">Premium Key Generation System</p>
 
-    <h2>SNAKE MODS OFC</h2>
+    <div class="status-box" id="status">STATUS: WAITING FOR AD...</div>
 
-    <div class="terminal" id="terminal">
-        [#] System: Ready...<br>
-        [#] Step 1: Open Gatekeeper
-    </div>
+    <div class="key-box" id="keyDisplay">KEY-XXXX-LOCKED</div>
 
-    <div class="key-display" id="keyBox" style="color: grey;">--- LOCKED ---</div>
+    <button class="btn btn-ad" id="adBtn" onclick="startAd()">1. Unlock Generator (Ad)</button>
+    <button class="btn btn-gen" id="genBtn" onclick="makeKey()" disabled>2. Generate Key</button>
     
-    <button class="btn btn-gate" id="gateBtn" onclick="openGatekeeper()">1. OPEN GATEKEEPER (AD)</button>
-    <button class="btn btn-gen" id="genBtn" onclick="generateKey()" disabled>2. GENERATE KEY</button>
-    <button class="btn" style="background:rgba(255,255,255,0.1)" onclick="copyKey()">3. COPY KEY</button>
-
+    <div id="verified-badge">✅ AD VERIFIED SUCCESSFULLY</div>
 </div>
 
 <script>
-    // --- SETUP ---
-    // 1. Just2Earn par jayein, apne GitHub link ke peeche ?verified=true lagakar shorten karein.
-    // 2. Wo short link yahan niche paste karein.
-    const adLink = "YAHAN_APNA_JUST2EARN_LINK_DALEIN"; 
+    // Aapka Short Link yahan hai
+    const myAdLink = "https://just2earn.com/eM7xyh77";
 
-    const terminal = document.getElementById('terminal');
-    const keyBox = document.getElementById('keyBox');
-    const genBtn = document.getElementById('genBtn');
-    const gateBtn = document.getElementById('gateBtn');
-
-    function log(msg) {
-        terminal.innerHTML += `<br>[#] ${msg}`;
-        terminal.scrollTop = terminal.scrollHeight;
-    }
-
-    // Page Load hote hi check karega ki user ad dekh kar aaya hai ya nahi
+    // Auto-check on Page Load
     window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('verified')) {
-            unlockEverything();
-            log("System: Ad Verified via Redirect!");
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('verified')) {
+            enableGenerator();
         }
     }
 
-    function openGatekeeper() {
-        if(adLink === "YAHAN_APNA_JUST2EARN_LINK_DALEIN") {
-            alert("Admin: Pehle Just2Earn link code mein update karein!");
-            return;
-        }
-        window.open(adLink, '_blank');
-        log("Ad link opened. Wait for redirect or 20s...");
+    function startAd() {
+        document.getElementById('status').innerText = "STATUS: COMPLETING AD...";
+        window.open(myAdLink, '_blank');
         
-        // Timer as a backup
-        setTimeout(() => {
-            unlockEverything();
-        }, 20000); 
+        // Timer Backup: Agar redirect fail ho toh 40 sec baad khud khul jaye
+        setTimeout(enableGenerator, 40000);
     }
 
-    function unlockEverything() {
-        localStorage.setItem("snake_verified", "true");
-        genBtn.disabled = false;
-        gateBtn.innerText = "STEP 1: COMPLETED ✅";
-        gateBtn.style.background = "#00ffaa";
-        log("Generator Unlocked!");
+    function enableGenerator() {
+        document.getElementById('genBtn').disabled = false;
+        document.getElementById('adBtn').style.display = "none";
+        document.getElementById('status').innerText = "STATUS: READY TO GENERATE";
+        document.getElementById('status').style.borderColor = "#00ffaa";
+        document.getElementById('verified-badge').style.display = "block";
     }
 
-    function generateKey() {
-        const chars = "ABC123XYZ";
-        let res = "";
-        for(let i=0; i<6; i++) res += chars[Math.floor(Math.random()*chars.length)];
-        const fullKey = "SNAKE_" + res + "_MODS";
+    function makeKey() {
+        const random = Math.random().toString(36).substring(2, 8).toUpperCase();
+        const finalKey = "SNAKE-" + random + "-2026";
         
-        keyBox.innerText = fullKey;
-        keyBox.style.color = "var(--neon-cyan)";
-        log("Key Generated: " + fullKey);
-    }
-
-    function copyKey() {
-        if(keyBox.innerText.includes("LOCKED")) return;
-        navigator.clipboard.writeText(keyBox.innerText);
-        alert("Key Copied!");
+        const keyDisplay = document.getElementById('keyDisplay');
+        keyDisplay.innerText = finalKey;
+        keyDisplay.style.color = "#00f2ff";
+        keyDisplay.style.border = "1px solid #00f2ff";
+        
+        document.getElementById('status').innerText = "STATUS: KEY GENERATED!";
+        
+        // Copy to clipboard automatically
+        navigator.clipboard.writeText(finalKey);
+        alert("Key Generated & Copied: " + finalKey);
     }
 </script>
+
 </body>
 </html>
