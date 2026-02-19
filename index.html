@@ -23,7 +23,6 @@
             overflow: hidden;
         }
 
-        /* Neon Glow Background */
         .bg-glow {
             position: absolute;
             width: 300px;
@@ -58,6 +57,7 @@
             font-size: 0.8rem;
             margin-bottom: 20px;
             border-bottom: 2px solid var(--primary);
+            transition: 0.3s;
         }
 
         .key-box {
@@ -117,10 +117,8 @@
 </div>
 
 <script>
-    // Aapka Short Link yahan hai
     const myAdLink = "https://just2earn.com/eM7xyh77";
 
-    // Auto-check on Page Load
     window.onload = function() {
         const params = new URLSearchParams(window.location.search);
         if (params.has('verified')) {
@@ -129,35 +127,52 @@
     }
 
     function startAd() {
-        document.getElementById('status').innerText = "STATUS: COMPLETING AD...";
+        document.getElementById('status').innerText = "STATUS: OPENING AD...";
         window.open(myAdLink, '_blank');
-        
-        // Timer Backup: Agar redirect fail ho toh 40 sec baad khud khul jaye
-        setTimeout(enableGenerator, 40000);
+        setTimeout(enableGenerator, 40000); // 40 seconds fallback
     }
 
     function enableGenerator() {
         document.getElementById('genBtn').disabled = false;
         document.getElementById('adBtn').style.display = "none";
         document.getElementById('status').innerText = "STATUS: READY TO GENERATE";
-        document.getElementById('status').style.borderColor = "#00ffaa";
+        document.getElementById('status').style.borderBottomColor = "#00ffaa";
         document.getElementById('verified-badge').style.display = "block";
     }
 
     function makeKey() {
+        // Step 1: Generate Key
         const random = Math.random().toString(36).substring(2, 8).toUpperCase();
         const finalKey = "SNAKE-" + random + "-2026";
         
         const keyDisplay = document.getElementById('keyDisplay');
+        const statusBox = document.getElementById('status');
+        
         keyDisplay.innerText = finalKey;
         keyDisplay.style.color = "#00f2ff";
         keyDisplay.style.border = "1px solid #00f2ff";
         
-        document.getElementById('status').innerText = "STATUS: KEY GENERATED!";
-        
-        // Copy to clipboard automatically
-        navigator.clipboard.writeText(finalKey);
-        alert("Key Generated & Copied: " + finalKey);
+        statusBox.innerText = "STATUS: SAVING TO SERVER...";
+        statusBox.style.color = "#ffea00";
+
+        // Step 2: Sync with InfinityFree Database
+        fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey)
+        .then(response => response.text())
+        .then(data => {
+            if(data.trim() === "SUCCESS") {
+                statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
+                statusBox.style.color = "#00ffaa";
+                navigator.clipboard.writeText(finalKey);
+                alert("Key Saved & Copied: " + finalKey);
+            } else {
+                statusBox.innerText = "STATUS: SERVER ERROR ❌";
+                alert("Database Error: " + data);
+            }
+        })
+        .catch(err => {
+            statusBox.innerText = "STATUS: CONNECTION FAILED ❌";
+            console.error(err);
+        });
     }
 </script>
 
