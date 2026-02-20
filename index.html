@@ -155,21 +155,20 @@
         statusBox.innerText = "STATUS: SAVING TO SERVER...";
         statusBox.style.color = "#ffea00";
 
-                fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey)
-.then(response => {
-    if (response.ok || response.type === 'opaque') {
-        statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
-        statusBox.style.color = "#00ffaa";
-        navigator.clipboard.writeText(finalKey);
-    } else {
-        throw new Error('Server Error');
-    }
+                fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey, {
+    mode: 'no-cors' // Isse browser block nahi karega
+})
+.then(() => {
+    // Is mode mein humein "SUCCESS" nahi dikhega, 
+    // par data server tak pahunch jayega
+    statusBox.innerText = "STATUS: KEY SENT TO SERVER! ✅";
+    statusBox.style.color = "#00ffaa";
+    navigator.clipboard.writeText(finalKey);
+    alert("Key Generated! Check Admin Panel.\nKey: " + finalKey);
 })
 .catch(err => {
-    statusBox.innerText = "STATUS: SAVE FAILED! ❌";
-    console.log("Asli Error:", err);
+    statusBox.innerText = "STATUS: CONNECTION ERROR ❌";
 });
-
 
     }
 </script>
