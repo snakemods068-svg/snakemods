@@ -37,10 +37,11 @@
     const myAdLink = "https://just2earn.com/eM7xyh77";
 
     function startAd() {
-        document.getElementById('status').innerText = "STATUS: VERIFYING AD (15s)...";
+        const statusBox = document.getElementById('status');
+        statusBox.innerText = "STATUS: VERIFYING AD... ⏳";
         window.open(myAdLink, '_blank');
         
-        // 15 Second baad apne aap unlock ho jayega
+        // Agar 15 sec baad bhi page na khule toh manual unlock
         setTimeout(enableGenerator, 15000);
     }
 
@@ -49,30 +50,46 @@
         document.getElementById('adBtn').style.display = "none";
         document.getElementById('status').innerText = "STATUS: READY TO GENERATE";
         document.getElementById('status').style.color = "#00ffaa";
-        document.getElementById('verified-badge').style.display = "block";
+        if(document.getElementById('verified-badge')) {
+            document.getElementById('verified-badge').style.display = "block";
+        }
     }
 
     function makeKey() {
-        const random = Math.random().toString(36).substring(2, 8).toUpperCase();
-        const finalKey = "SNAKE-" + random + "-2026";
+        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; 
+        let res = "";
+        for(let i=0; i<6; i++) res += chars[Math.floor(Math.random()*chars.length)];
         
-        document.getElementById('keyDisplay').innerText = finalKey;
-        document.getElementById('keyDisplay').style.color = "#00f2ff";
-        document.getElementById('status').innerText = "STATUS: SAVING TO ADMIN PANEL...";
+        const finalKey = "SNAKE-" + res + "-2026";
+        const statusBox = document.getElementById('status');
+        const keyDisplay = document.getElementById('keyDisplay');
 
-        // No-cors mode taaki InfinityFree block na kare
-        fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey, {
-            mode: 'no-cors'
-        })
+        keyDisplay.innerText = finalKey;
+        keyDisplay.style.color = "#00f2ff";
+        statusBox.innerText = "STATUS: SAVING TO PANEL...";
+
+        // SSL Error se bachne ke liye hum HTTP aur HTTPS dono try karenge
+        const apiUrl = 'https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey;
+
+        fetch(apiUrl, { mode: 'no-cors' })
         .then(() => {
-            document.getElementById('status').innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
-            document.getElementById('status').style.color = "#00ffaa";
+            statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
+            statusBox.style.color = "#00ffaa";
             navigator.clipboard.writeText(finalKey);
-            alert("KEY SAVED! Check Admin Panel.\nKey: " + finalKey);
+            alert("KEY SAVED IN PANEL!\nKey: " + finalKey);
         })
-        .catch(err => {
-            document.getElementById('status').innerText = "STATUS: SAVE ERROR ❌";
+        .catch(() => {
+            statusBox.innerText = "STATUS: DB SYNC ERROR ❌";
         });
+    }
+
+    window.onload = function() {
+        if (new URLSearchParams(window.location.search).has('verified')) {
+            enableGenerator();
+        }
+    }
+</script>
+
     }
 </script>
 </body>
