@@ -3,180 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNAKE MODS | VIP SYSTEM</title>
+    <title>SNAKE MODS OFC | PREMIUM ACCESS</title>
     <style>
         :root {
-            --primary: #00f2ff;
-            --secondary: #7000ff;
-            --bg: #050505;
+            --neon-cyan: #00f2ff;
+            --neon-purple: #8e2de2;
+            --bg-dark: #020205;
+            --warning-gold: #ffea00;
         }
 
         body {
-            background: var(--bg);
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 242, 255, 0.15) 0, transparent 50%), 
+                radial-gradient(at 100% 100%, rgba(142, 45, 226, 0.15) 0, transparent 50%);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .bg-glow {
+        body::before {
+            content: "";
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--primary);
-            filter: blur(150px);
-            opacity: 0.2;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            transform: perspective(500px) rotateX(60deg);
+            bottom: -50%;
             z-index: -1;
+            animation: moveGrid 10s linear infinite;
         }
 
-        .card {
-            width: 350px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 242, 255, 0.3);
-            border-radius: 30px;
-            padding: 30px;
+        @keyframes moveGrid {
+            from { background-position: 0 0; }
+            to { background-position: 0 100%; }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 340px;
+            background: rgba(10, 10, 20, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 242, 255, 0.4);
+            border-radius: 25px;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
+            color: white;
+            z-index: 1;
+            margin: 10px;
         }
 
-        .logo {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px var(--primary);
+        .logo-container {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
         }
 
-        .status-box {
-            background: rgba(0,0,0,0.5);
-            padding: 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--primary);
-            transition: 0.3s;
-        }
+        .logo-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        .key-box {
-            font-size: 1.2rem;
+        h2 {
+            font-size: 1.3rem;
+            margin: 5px 0 15px;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
             letter-spacing: 2px;
-            padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            margin-bottom: 20px;
-            color: #555;
-            border: 1px dashed #444;
+            text-shadow: 0 0 10px var(--neon-cyan);
         }
+
+        .terminal {
+            background: rgba(0, 0, 0, 0.9);
+            border-left: 4px solid var(--neon-cyan);
+            height: 65px;
+            text-align: left;
+            padding: 10px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+            color: #00ffaa;
+            border-radius: 8px;
+            overflow-y: auto;
+        }
+
+        .key-display {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px dashed var(--neon-cyan);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .status { font-size: 0.75rem; margin-bottom: 15px; font-weight: bold; letter-spacing: 1px; }
 
         .btn {
             width: 100%;
-            padding: 15px;
+            padding: 13px;
+            margin: 5px 0;
             border: none;
-            border-radius: 15px;
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
             text-transform: uppercase;
+            transition: 0.3s ease;
+            color: white;
+            font-size: 0.85rem;
         }
 
-        .btn-ad { background: linear-gradient(90deg, #ff4b2b, #ff416c); color: white; }
-        .btn-gen { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white; }
-        .btn-gen:disabled { background: #222; color: #555; cursor: not-allowed; }
+        .btn-gate { background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%); }
+        .btn-gen { background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%); }
+        .btn-copy { background: rgba(255,255,255,0.05); border: 1px solid rgba(0, 242, 255, 0.5); }
+        .btn-verify { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
 
-        .btn:active { transform: scale(0.95); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .social-container { display: flex; gap: 10px; margin-top: 15px; }
+        .social-btn { flex: 1; padding: 10px; border-radius: 10px; border: none; color: white; cursor: pointer; font-size: 0.7rem; font-weight: bold; }
+        .youtube { background: #ff0000; }
+        .telegram { background: #0088cc; }
 
-        #verified-badge {
-            display: none;
-            color: #00ffaa;
-            font-size: 0.9rem;
-            margin-top: 10px;
+        #toast {
+            visibility: hidden;
+            background: var(--neon-cyan);
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 50px;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 900;
+            z-index: 10;
         }
+        #toast.show { visibility: visible; animation: fadein 0.5s; }
+        @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
     </style>
 </head>
 <body>
 
-<div class="bg-glow"></div>
+<div id="toast">ACTION SUCCESSFUL!</div>
 
-<div class="card">
-    <div class="logo">🐍</div>
-    <h2 style="margin:0; color:var(--primary);">SNAKE MODS</h2>
-    <p style="color:#aaa; font-size:0.9rem; margin-bottom:20px;">Premium Key Generation System</p>
+<div class="container">
+    <div class="logo-container">
+        <img src="https://i.supaimg.com/9f7634ce-5a01-4cbd-96ff-9200a005f5e1/e24afaff-1125-4537-90a6-928216cd49d0.png" alt="SNAKE MODS">
+    </div>
 
-    <div class="status-box" id="status">STATUS: WAITING FOR AD...</div>
+    <h2>SNAKE MODS OFC</h2>
 
-    <div class="key-box" id="keyDisplay">KEY-XXXX-LOCKED</div>
+    <div class="terminal" id="terminal">
+        [#] Security: ACTIVE<br>
+        [#] Step 1: Open Gatekeeper to Unlock
+    </div>
 
-    <button class="btn btn-ad" id="adBtn" onclick="startAd()">1. Unlock Generator (Ad)</button>
-    <button class="btn btn-gen" id="genBtn" onclick="makeKey()" disabled>2. Generate Key</button>
-    
-    <div id="verified-badge">✅ AD VERIFIED SUCCESSFULLY</div>
+    <div class="key-display" id="keyBox" style="color: rgba(255,255,255,0.3);">--- LOCKED ---</div>
+    <div class="status" id="statusText" style="color: #ff4500;">STATUS: UNAUTHORIZED</div>
+
+    <button class="btn btn-gate" id="gateBtn" onclick="openGatekeeper()">1. Open Gatekeeper (Watch Ad)</button>
+    <button class="btn btn-gen" id="genBtn" onclick="generateKey()" disabled>2. Generate Access Key</button>
+    <button class="btn btn-copy" onclick="copyKey()">3. Copy Key</button>
+    <button class="btn btn-verify" onclick="verifyKey()">4. Verify Access</button>
+
+    <div class="social-container">
+        <button class="social-btn youtube" onclick="window.open('https://youtube.com', '_blank')">YOUTUBE</button>
+        <button class="social-btn telegram" onclick="window.open('https://t.me', '_blank')">TELEGRAM</button>
+    </div>
 </div>
 
 <script>
-    const myAdLink = "https://just2earn.com/eM7xyh77";
+    const terminal = document.getElementById('terminal');
+    const keyBox = document.getElementById('keyBox');
+    const statusText = document.getElementById('statusText');
+    const genBtn = document.getElementById('genBtn');
+    const gateBtn = document.getElementById('gateBtn');
+    
+    // Aapka Short Link
+    const adLink = "https://just2earn.com/eM7xyh77";
+
+    function log(msg) {
+        const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+        terminal.innerHTML += `<br>[${time}] ${msg}`;
+        terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    function showToast(text) {
+        const t = document.getElementById('toast');
+        t.innerText = text;
+        t.classList.add("show");
+        setTimeout(() => { t.classList.remove("show"); }, 2500);
+    }
 
     window.onload = function() {
-        const params = new URLSearchParams(window.location.search);
-        if (params.has('verified')) {
-            enableGenerator();
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('verified')) {
+            unlockStep();
+            log("System: Ad Verified! You can generate key.");
+            showToast("VERIFICATION SUCCESS!");
         }
+    };
+
+    function openGatekeeper() {
+        log("Opening Ad Gatekeeper...");
+        window.open(adLink, '_blank');
     }
 
-    function startAd() {
-        document.getElementById('status').innerText = "STATUS: OPENING AD...";
-        window.open(myAdLink, '_blank');
-        // 15 seconds wait for auto-unlock
-        setTimeout(enableGenerator, 15000); 
+    function unlockStep() {
+        genBtn.disabled = false;
+        gateBtn.innerText = "STEP 1: COMPLETED ✅";
+        gateBtn.style.background = "#00ffaa";
+        gateBtn.style.color = "#000";
+        statusText.innerText = "STATUS: AUTHORIZED";
+        statusText.style.color = "#00ffaa";
     }
 
-    function enableGenerator() {
-        document.getElementById('genBtn').disabled = false;
-        document.getElementById('adBtn').style.display = "none";
-        document.getElementById('status').innerText = "STATUS: READY TO GENERATE";
-        document.getElementById('status').style.color = "#00ffaa";
-        document.getElementById('verified-badge').style.display = "block";
-    }
-
-    function makeKey() {
-        // Random 6 chars generate karna (Numbers aur Letters ka mix)
+    function generateKey() {
+        // Mod Menu ke hisaab se 6 characters ki random string
         const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; 
-        let randomPart = "";
-        for(let i=0; i<6; i++) {
-            randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
+        let res = "";
+        for(let i=0; i<6; i++) res += chars[Math.floor(Math.random()*chars.length)];
         
-        const finalKey = "SNAKE-" + randomPart + "-2026";
+        // Final Key Format: SNAKE-XXXXXX-2026 (Jo aapke Mod Menu mein hai)
+        const fullKey = "SNAKE-" + res + "-2026";
         
-        const keyDisplay = document.getElementById('keyDisplay');
-        const statusBox = document.getElementById('status');
+        keyBox.innerText = fullKey;
+        keyBox.style.color = "var(--neon-cyan)";
+        statusText.innerText = "STATUS: KEY ACTIVE";
+        statusText.style.color = "#00ffaa";
+        log("Key Generated & Saved to DB");
+        showToast("KEY GENERATED!");
         
-        keyDisplay.innerText = finalKey;
-        keyDisplay.style.color = "#00f2ff";
-        statusBox.innerText = "STATUS: SYNCING WITH SERVER...";
+        // ZAROORI: InfinityFree Database mein key save karna
+        // Domain ko apni hosting ke mutabik check karein
+        fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + fullKey)
+        .then(response => response.text())
+        .then(data => log("DB Sync: " + data))
+        .catch(() => log("DB Sync: Error (Check Hosting)"));
+    }
 
-        // SSL Error fix karne ke liye no-cors mode use kiya
-        const syncUrl = 'https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey;
+    function copyKey() {
+        if(keyBox.innerText.includes("LOCKED")) return;
+        navigator.clipboard.writeText(keyBox.innerText);
+        showToast("COPIED!");
+    }
 
-        fetch(syncUrl, {
-            method: 'GET',
-            mode: 'no-cors' 
-        })
-        .then(() => {
-            statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
-            statusBox.style.color = "#00ffaa";
-            navigator.clipboard.writeText(finalKey);
-            alert("Key Saved in Admin Panel!\nKey: " + finalKey);
-        })
-        .catch(err => {
-            statusBox.innerText = "STATUS: CONNECTION ERROR ❌";
-            console.error(err);
-        });
+    function verifyKey() {
+        const k = keyBox.innerText;
+        if(k.includes("LOCKED")) return;
+        
+        statusText.innerText = "STATUS: ACCESS GRANTED";
+        statusText.style.color = "var(--warning-gold)";
+        log("Access Verified!");
+        showToast("ACCESS GRANTED!");
     }
 </script>
-
-</body>
-</html>
