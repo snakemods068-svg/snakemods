@@ -155,17 +155,19 @@
         statusBox.innerText = "STATUS: SAVING TO SERVER...";
         statusBox.style.color = "#ffea00";
 
-                // Is code ko apne makeKey function ke andar replace karein
-fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey)
+                fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey)
 .then(response => {
-    statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
-    statusBox.style.color = "#00ffaa";
-    navigator.clipboard.writeText(finalKey);
-    alert("Key Saved: " + finalKey);
+    if (response.ok || response.type === 'opaque') {
+        statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
+        statusBox.style.color = "#00ffaa";
+        navigator.clipboard.writeText(finalKey);
+    } else {
+        throw new Error('Server Error');
+    }
 })
 .catch(err => {
     statusBox.innerText = "STATUS: SAVE FAILED! ❌";
-    console.log("Error:", err);
+    console.log("Asli Error:", err);
 });
 
 
