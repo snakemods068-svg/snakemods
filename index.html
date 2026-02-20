@@ -5,175 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SNAKE MODS | VIP SYSTEM</title>
     <style>
-        :root {
-            --primary: #00f2ff;
-            --secondary: #7000ff;
-            --bg: #050505;
-        }
-
-        body {
-            background: var(--bg);
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .bg-glow {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--primary);
-            filter: blur(150px);
-            opacity: 0.2;
-            z-index: -1;
-        }
-
-        .card {
-            width: 350px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 242, 255, 0.3);
-            border-radius: 30px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-
-        .logo {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px var(--primary);
-        }
-
-        .status-box {
-            background: rgba(0,0,0,0.5);
-            padding: 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--primary);
-            transition: 0.3s;
-        }
-
-        .key-box {
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            margin-bottom: 20px;
-            color: #555;
-            border: 1px dashed #444;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
-            text-transform: uppercase;
-        }
-
+        :root { --primary: #00f2ff; --secondary: #7000ff; --bg: #050505; }
+        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        .bg-glow { position: absolute; width: 300px; height: 300px; background: var(--primary); filter: blur(150px); opacity: 0.2; z-index: -1; }
+        .card { width: 350px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(0, 242, 255, 0.3); border-radius: 30px; padding: 30px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
+        .logo { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 0 0 10px var(--primary); }
+        .status-box { background: rgba(0,0,0,0.5); padding: 10px; border-radius: 15px; font-size: 0.8rem; margin-bottom: 20px; border-bottom: 2px solid var(--primary); transition: 0.3s; }
+        .key-box { font-size: 1.2rem; letter-spacing: 2px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 15px; margin-bottom: 20px; color: #555; border: 1px dashed #444; }
+        .btn { width: 100%; padding: 15px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; text-transform: uppercase; }
         .btn-ad { background: linear-gradient(90deg, #ff4b2b, #ff416c); color: white; }
         .btn-gen { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white; }
-        .btn-gen:disabled { background: #222; color: #555; cursor: not-allowed; }
-
-        .btn:active { transform: scale(0.95); }
-
-        #verified-badge {
-            display: none;
-            color: #00ffaa;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
+        .btn-gen:disabled { background: #222; color: #555; cursor: not-allowed; opacity: 0.5; }
+        #verified-badge { display: none; color: #00ffaa; font-size: 0.9rem; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="bg-glow"></div>
-
 <div class="card">
     <div class="logo">🐍</div>
     <h2 style="margin:0; color:var(--primary);">SNAKE MODS</h2>
     <p style="color:#aaa; font-size:0.9rem; margin-bottom:20px;">Premium Key Generation System</p>
-
     <div class="status-box" id="status">STATUS: WAITING FOR AD...</div>
-
     <div class="key-box" id="keyDisplay">KEY-XXXX-LOCKED</div>
-
     <button class="btn btn-ad" id="adBtn" onclick="startAd()">1. Unlock Generator (Ad)</button>
     <button class="btn btn-gen" id="genBtn" onclick="makeKey()" disabled>2. Generate Key</button>
-    
     <div id="verified-badge">✅ AD VERIFIED SUCCESSFULLY</div>
 </div>
 
 <script>
     const myAdLink = "https://just2earn.com/eM7xyh77";
 
-    window.onload = function() {
-        const params = new URLSearchParams(window.location.search);
-        if (params.has('verified')) {
-            enableGenerator();
-        }
-    }
-
     function startAd() {
-        document.getElementById('status').innerText = "STATUS: OPENING AD...";
+        document.getElementById('status').innerText = "STATUS: VERIFYING AD (15s)...";
         window.open(myAdLink, '_blank');
-        setTimeout(enableGenerator, 40000); // 40 seconds fallback
+        
+        // 15 Second baad apne aap unlock ho jayega
+        setTimeout(enableGenerator, 15000);
     }
 
     function enableGenerator() {
         document.getElementById('genBtn').disabled = false;
         document.getElementById('adBtn').style.display = "none";
         document.getElementById('status').innerText = "STATUS: READY TO GENERATE";
-        document.getElementById('status').style.borderBottomColor = "#00ffaa";
+        document.getElementById('status').style.color = "#00ffaa";
         document.getElementById('verified-badge').style.display = "block";
     }
 
     function makeKey() {
-    const random = Math.random().toString(36).substring(2, 8).toUpperCase();
-    const finalKey = "SNAKE-" + random + "-2026";
-    
-    const keyDisplay = document.getElementById('keyDisplay');
-    const statusBox = document.getElementById('status');
-    
-    keyDisplay.innerText = finalKey;
-    statusBox.innerText = "STATUS: SYNCING WITH SERVER...";
+        const random = Math.random().toString(36).substring(2, 8).toUpperCase();
+        const finalKey = "SNAKE-" + random + "-2026";
+        
+        document.getElementById('keyDisplay').innerText = finalKey;
+        document.getElementById('keyDisplay').style.color = "#00f2ff";
+        document.getElementById('status').innerText = "STATUS: SAVING TO ADMIN PANEL...";
 
-    // Final Link with Timestamp (taaki cache na ho)
-    const syncUrl = 'https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey + '&t=' + Date.now();
-
-    fetch(syncUrl, {
-        method: 'GET',
-        mode: 'no-cors' // Isse connection error gayab ho jayega
-    })
-    .then(() => {
-        // No-cors mein humein status nahi milta, par data server tak pahunch jata hai
-        statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
-        statusBox.style.color = "#00ffaa";
-        navigator.clipboard.writeText(finalKey);
-        alert("Key Saved in Admin Panel!\nKey: " + finalKey);
-    })
-    .catch(err => {
-        statusBox.innerText = "STATUS: RETRYING...";
-        console.error(err);
-    });
-}
-
-
-
+        // No-cors mode taaki InfinityFree block na kare
+        fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey, {
+            mode: 'no-cors'
+        })
+        .then(() => {
+            document.getElementById('status').innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
+            document.getElementById('status').style.color = "#00ffaa";
+            navigator.clipboard.writeText(finalKey);
+            alert("KEY SAVED! Check Admin Panel.\nKey: " + finalKey);
+        })
+        .catch(err => {
+            document.getElementById('status').innerText = "STATUS: SAVE ERROR ❌";
+        });
     }
 </script>
-
 </body>
 </html>
