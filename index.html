@@ -5,20 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SNAKE MODS | VIP SYSTEM</title>
     <style>
-        :root { --primary: #00f2ff; --bg: #050505; }
-        body { background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
-        .card { width: 350px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(0, 242, 255, 0.3); border-radius: 30px; padding: 30px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.5); position: relative; z-index: 1; }
-        .logo { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 0 0 10px var(--primary); }
-        .status-box { background: rgba(0,0,0,0.5); padding: 12px; border-radius: 15px; font-size: 0.85rem; margin-bottom: 20px; border: 1px solid var(--primary); transition: 0.3s; color: #00f2ff; }
-        .key-box { font-size: 1.2rem; letter-spacing: 1px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 15px; margin-bottom: 20px; color: #555; border: 1px dashed #444; }
-        .btn { width: 100%; padding: 15px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; text-transform: uppercase; }
+        :root {
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --bg: #050505;
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .bg-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .card {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .status-box {
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .key-box {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            color: #555;
+            border: 1px dashed #444;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
         .btn-ad { background: linear-gradient(90deg, #ff4b2b, #ff416c); color: white; }
         .btn-gen { background: linear-gradient(90deg, #00d2ff, #3a7bd5); color: white; }
-        .btn-gen:disabled { background: #222; color: #555; cursor: not-allowed; opacity: 0.5; }
-        #verified-badge { display: none; color: #00ffaa; font-size: 0.9rem; margin-top: 10px; font-weight: bold; }
+        .btn-gen:disabled { background: #222; color: #555; cursor: not-allowed; }
+
+        .btn:active { transform: scale(0.95); }
+
+        #verified-badge {
+            display: none;
+            color: #00ffaa;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
+
+<div class="bg-glow"></div>
 
 <div class="card">
     <div class="logo">🐍</div>
@@ -36,67 +117,64 @@
 </div>
 
 <script>
-    // Aapka Ad Link aur API Link
     const myAdLink = "https://just2earn.com/eM7xyh77";
-    const apiLink = "https://snakemods.infinityfreeapp.com/save_key.php";
+
+    window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('verified')) {
+            enableGenerator();
+        }
+    }
 
     function startAd() {
-        const statusBox = document.getElementById('status');
-        statusBox.innerText = "STATUS: VERIFYING AD (15s)...";
-        
-        // Ad tab kholna
+        document.getElementById('status').innerText = "STATUS: OPENING AD...";
         window.open(myAdLink, '_blank');
-
-        // 15 second ka wait, bhale hi ad mein SSL error aaye
-        setTimeout(enableGenerator, 15000);
+        // 15 seconds wait for auto-unlock
+        setTimeout(enableGenerator, 15000); 
     }
 
     function enableGenerator() {
         document.getElementById('genBtn').disabled = false;
         document.getElementById('adBtn').style.display = "none";
-        const statusBox = document.getElementById('status');
-        statusBox.innerText = "STATUS: READY TO GENERATE";
-        statusBox.style.color = "#00ffaa";
+        document.getElementById('status').innerText = "STATUS: READY TO GENERATE";
+        document.getElementById('status').style.color = "#00ffaa";
         document.getElementById('verified-badge').style.display = "block";
     }
 
     function makeKey() {
-        // Random 6 character key
+        // Random 6 chars generate karna (Numbers aur Letters ka mix)
         const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; 
-        let res = "";
-        for(let i=0; i<6; i++) res += chars[Math.floor(Math.random()*chars.length)];
+        let randomPart = "";
+        for(let i=0; i<6; i++) {
+            randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
         
-        const finalKey = "SNAKE-" + res + "-2026";
+        const finalKey = "SNAKE-" + randomPart + "-2026";
         
         const keyDisplay = document.getElementById('keyDisplay');
         const statusBox = document.getElementById('status');
         
         keyDisplay.innerText = finalKey;
         keyDisplay.style.color = "#00f2ff";
-        statusBox.innerText = "STATUS: SAVING TO PANEL...";
+        statusBox.innerText = "STATUS: SYNCING WITH SERVER...";
 
-        // No-cors mode taaki connection error na aaye
-        fetch(apiLink + '?key=' + finalKey, {
+        // SSL Error fix karne ke liye no-cors mode use kiya
+        const syncUrl = 'https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey;
+
+        fetch(syncUrl, {
             method: 'GET',
-            mode: 'no-cors'
+            mode: 'no-cors' 
         })
         .then(() => {
-            statusBox.innerText = "STATUS: KEY SENT TO SERVER! ✅";
+            statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
             statusBox.style.color = "#00ffaa";
             navigator.clipboard.writeText(finalKey);
-            alert("KEY SAVED IN PANEL!\n\nKey: " + finalKey);
+            alert("Key Saved in Admin Panel!\nKey: " + finalKey);
         })
         .catch(err => {
             statusBox.innerText = "STATUS: CONNECTION ERROR ❌";
             console.error(err);
         });
-    }
-
-    // Direct link check (?verified=true)
-    window.onload = function() {
-        if (new URLSearchParams(window.location.search).has('verified')) {
-            enableGenerator();
-        }
     }
 </script>
 
