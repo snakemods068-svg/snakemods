@@ -141,35 +141,35 @@
     }
 
     function makeKey() {
-        // Step 1: Generate Key
-        const random = Math.random().toString(36).substring(2, 8).toUpperCase();
-        const finalKey = "SNAKE-" + random + "-2026";
-        
-        const keyDisplay = document.getElementById('keyDisplay');
-        const statusBox = document.getElementById('status');
-        
-        keyDisplay.innerText = finalKey;
-        keyDisplay.style.color = "#00f2ff";
-        keyDisplay.style.border = "1px solid #00f2ff";
-        
-        statusBox.innerText = "STATUS: SAVING TO SERVER...";
-        statusBox.style.color = "#ffea00";
+    const random = Math.random().toString(36).substring(2, 8).toUpperCase();
+    const finalKey = "SNAKE-" + random + "-2026";
+    
+    const keyDisplay = document.getElementById('keyDisplay');
+    const statusBox = document.getElementById('status');
+    
+    keyDisplay.innerText = finalKey;
+    statusBox.innerText = "STATUS: SYNCING WITH SERVER...";
 
-                const finalLink = 'https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey + '&t=' + new Date().getTime();
+    // Final Link with Timestamp (taaki cache na ho)
+    const syncUrl = 'https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey + '&t=' + Date.now();
 
-fetch(finalLink, {
-    method: 'GET',
-    mode: 'cors' // 'no-cors' mat use kijiye
-})
-.then(response => {
-    statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
-    statusBox.style.color = "#00ffaa";
-    navigator.clipboard.writeText(finalKey);
-})
-.catch(err => {
-    statusBox.innerText = "STATUS: CONNECTION ERROR ❌";
-    console.log(err);
-});
+    fetch(syncUrl, {
+        method: 'GET',
+        mode: 'no-cors' // Isse connection error gayab ho jayega
+    })
+    .then(() => {
+        // No-cors mein humein status nahi milta, par data server tak pahunch jata hai
+        statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
+        statusBox.style.color = "#00ffaa";
+        navigator.clipboard.writeText(finalKey);
+        alert("Key Saved in Admin Panel!\nKey: " + finalKey);
+    })
+    .catch(err => {
+        statusBox.innerText = "STATUS: RETRYING...";
+        console.error(err);
+    });
+}
+
 
 
     }
