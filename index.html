@@ -155,24 +155,19 @@
         statusBox.innerText = "STATUS: SAVING TO SERVER...";
         statusBox.style.color = "#ffea00";
 
-                // Step 2: Sync with InfinityFree Database (Line 158 se 175 tak replace karein)
-        fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey, {
-            method: 'GET',
-            mode: 'no-cors'
-        })
-        .then(() => {
-            // Success hone par status update aur key copy hogi
-            statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
-            statusBox.style.color = "#00ffaa";
-            
-            navigator.clipboard.writeText(finalKey);
-            alert("Key Generated & Saved Successfully!\n\nKey: " + finalKey);
-        })
-        .catch(err => {
-            // Agar internet ya server mein koi badi problem ho
-            statusBox.innerText = "STATUS: CONNECTION FAILED ❌";
-            console.error("Error details:", err);
-        });
+                // Is code ko apne makeKey function ke andar replace karein
+fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey)
+.then(response => {
+    statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
+    statusBox.style.color = "#00ffaa";
+    navigator.clipboard.writeText(finalKey);
+    alert("Key Saved: " + finalKey);
+})
+.catch(err => {
+    statusBox.innerText = "STATUS: SAVE FAILED! ❌";
+    console.log("Error:", err);
+});
+
 
     }
 </script>
