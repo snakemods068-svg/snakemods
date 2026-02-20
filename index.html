@@ -155,19 +155,22 @@
         statusBox.innerText = "STATUS: SAVING TO SERVER...";
         statusBox.style.color = "#ffea00";
 
-                fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey)
+                const finalLink = 'https://snakemods.infinityfreeapp.com/save_key.php?key=' + finalKey + '&t=' + new Date().getTime();
 
-.then(() => {
-    // Is mode mein humein "SUCCESS" nahi dikhega, 
-    // par data server tak pahunch jayega
-    statusBox.innerText = "STATUS: KEY SENT TO SERVER! ✅";
+fetch(finalLink, {
+    method: 'GET',
+    mode: 'cors' // 'no-cors' mat use kijiye
+})
+.then(response => {
+    statusBox.innerText = "STATUS: KEY ACTIVE & SAVED! ✅";
     statusBox.style.color = "#00ffaa";
     navigator.clipboard.writeText(finalKey);
-    alert("Key Generated! Check Admin Panel.\nKey: " + finalKey);
 })
 .catch(err => {
     statusBox.innerText = "STATUS: CONNECTION ERROR ❌";
+    console.log(err);
 });
+
 
     }
 </script>
