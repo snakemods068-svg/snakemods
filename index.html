@@ -3,92 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANKUSH X MODS - KEY SYSTEM</title>
+    <title>ANKUSH X MODS - NEW SYSTEM</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 0; padding: 20px; }
-        .logo-container { margin-top: 20px; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; box-shadow: 0 0 15px #ff00ff; }
-        .logo-container img { width: 150px; display: block; }
-        h1 { color: #00ffff; text-shadow: 0 0 10px #00ffff; margin: 20px 0; font-size: 24px; text-align: center; }
-        .terminal-box { width: 90%; max-width: 400px; border: 1px solid #00ffff; background: rgba(0, 0, 0, 0.5); padding: 15px; font-family: 'Courier New', monospace; font-size: 14px; color: #00ffff; margin-bottom: 20px; border-radius: 5px; box-sizing: border-box; }
-        .status { color: #ffd700; font-weight: bold; margin-bottom: 20px; text-transform: uppercase; }
-        .action-btn { width: 90%; max-width: 400px; padding: 15px; margin: 8px 0; border: none; border-radius: 25px; font-weight: bold; color: #000; cursor: pointer; background: linear-gradient(to right, #00ffff, #007bff); box-shadow: 0 0 10px #007bff; text-decoration: none; display: block; text-align: center; }
-        .btn-disabled { filter: grayscale(1); cursor: not-allowed; opacity: 0.6; }
-        #keyDisplayBox { display: none; width: 90%; max-width: 400px; background: #222; padding: 10px; border-radius: 10px; margin-top: 10px; border: 1px dashed #00ffff; text-align: center; }
-        #generatedKey { font-size: 18px; color: #00ff00; letter-spacing: 2px; }
-        .social-container { display: flex; gap: 10px; width: 90%; max-width: 400px; margin-top: 20px; }
-        .social-btn { flex: 1; padding: 12px; border: none; border-radius: 25px; color: white; text-decoration: none; text-align: center; font-weight: bold; background: linear-gradient(to right, #ff00ff, #ff1493); }
+        body { background-color: #0d1117; color: #ffffff; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .main-card { background: #161b22; border: 1px solid #30363d; border-radius: 20px; padding: 30px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .logo { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #00f2fe; margin-bottom: 20px; box-shadow: 0 0 20px rgba(0,242,254,0.3); }
+        h1 { font-size: 24px; color: #00f2fe; margin-bottom: 10px; text-transform: uppercase; }
+        .status-box { background: rgba(0,242,254,0.1); color: #00f2fe; padding: 10px; border-radius: 10px; font-size: 14px; margin-bottom: 25px; border: 1px solid rgba(0,242,254,0.2); }
+        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; text-decoration: none; transition: 0.3s; }
+        .get-btn { background: linear-gradient(45deg, #00f2fe, #4facfe); color: white; box-shadow: 0 4px 15px rgba(79,172,254,0.4); }
+        .verify-btn { background: #21262d; color: #8b949e; border: 1px solid #30363d; }
+        .verify-btn.active { background: #238636; color: white; border: none; box-shadow: 0 4px 15px rgba(35,134,54,0.4); cursor: pointer; }
+        #keyBox { display: none; margin-top: 20px; padding: 20px; background: #0d1117; border-radius: 12px; border: 1px dashed #238636; }
+        .key-text { font-size: 20px; color: #39d353; font-weight: bold; letter-spacing: 2px; display: block; margin-bottom: 10px; }
+        .socials { display: flex; gap: 10px; margin-top: 20px; }
+        .s-btn { flex: 1; padding: 10px; border-radius: 8px; font-size: 12px; color: white; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="logo-container">
-        <img src="https://i.supaimg.com/9f7634ce-5a01-4cbd-96ff-9200a005f5e1/0b08eeb7-2924-42b4-81d7-ab80706293e5.png" alt="Logo">
-    </div>
+    <div class="main-card">
+        <img src="https://i.supaimg.com/9f7634ce-5a01-4cbd-96ff-9200a005f5e1/0b08eeb7-2924-42b4-81d7-ab80706293e5.png" class="logo" alt="Logo">
+        <h1>Ankush X Mods</h1>
+        <div class="status-box" id="status">System Status: Waiting...</div>
 
-    <h1>ANKUSH X MODS</h1>
+        <a href="https://just2earn.com/NjPcBF" target="_blank" class="btn get-btn" onclick="startProcess()">STEP 1: GET ACCESS KEY</a>
 
-    <div class="terminal-box" id="terminal">
-        [SYSTEM] Status: Ready...<br>
-        [SYSTEM] Step 1: Click 'GET KEY' to watch ads.
-    </div>
+        <button id="vBtn" class="btn verify-btn" onclick="verifyNow()" disabled>STEP 2: VERIFY ADS</button>
 
-    <div class="status" id="statusLabel">STATUS: STANDBY</div>
+        <div id="keyBox">
+            <span style="color:#8b949e; font-size:12px;">YOUR 5-HOUR KEY:</span>
+            <span class="key-text" id="finalKey">-------</span>
+            <button class="btn get-btn" style="padding:10px; font-size:14px;" onclick="copyKey()">COPY TO CLIPBOARD</button>
+        </div>
 
-
-    <button class="action-btn btn-disabled" id="verifyBtn" onclick="verifyAds()" disabled>2. VERIFY COMPLETION</button>
-
-    <div id="keyDisplayBox">
-        <p style="margin:0; font-size:12px; color:#aaa;">YOUR 5-HOUR KEY:</p>
-        <b id="generatedKey">WAITING...</b>
-        <button class="action-btn" style="margin-top:10px; padding:8px;" onclick="copyKey()">COPY KEY</button>
-    </div>
-
-    <div class="social-container">
-        <a href="YOUR_YT_LINK" target="_blank" class="social-btn">YOUTUBE</a>
-        <a href="YOUR_TG_LINK" target="_blank" class="social-btn">TELEGRAM</a>
+        <div class="socials">
+            <a href="https://youtube.com/@ekkaboy" class="s-btn" style="background:#ff0000;">YOUTUBE</a>
+            <a href="https://t.me/yourchannel" class="s-btn" style="background:#0088cc;">TELEGRAM</a>
+        </div>
     </div>
 
     <script>
-        let isAdClicked = false;
-
-        function startVerification() {
-            isAdClicked = true;
-            document.getElementById('terminal').innerHTML += "<br>[SYSTEM] Ad Link Opened. Please wait 15-30 seconds on ad page.";
-            document.getElementById('statusLabel').innerText = "STATUS: WAITING FOR ADS...";
-            
-            // 5 second baad verify button enable hoga
+        let clicked = false;
+        function startProcess() {
+            clicked = true;
+            document.getElementById('status').innerText = "Ad Opened! Wait 10 seconds...";
             setTimeout(() => {
-                document.getElementById('verifyBtn').classList.remove('btn-disabled');
-                document.getElementById('verifyBtn').disabled = false;
-                document.getElementById('terminal').innerHTML += "<br>[SYSTEM] You can now Verify.";
-            }, 5000);
+                const btn = document.getElementById('vBtn');
+                btn.classList.add('active');
+                btn.disabled = false;
+                btn.innerText = "STEP 2: VERIFY NOW";
+                document.getElementById('status').innerText = "Verification Ready!";
+            }, 10000); // 10 seconds ka wait
         }
 
-        function verifyAds() {
-            if(!isAdClicked) return;
-
-            document.getElementById('verifyBtn').innerText = "VERIFYING...";
-            document.getElementById('verifyBtn').disabled = true;
-
+        function verifyNow() {
+            if(!clicked) return;
+            document.getElementById('status').innerText = "Verifying Access...";
             setTimeout(() => {
-                document.getElementById('terminal').innerHTML += "<br>[SYSTEM] Verification Success! Key Generated.";
-                document.getElementById('statusLabel').innerText = "STATUS: VERIFIED ✅";
-                document.getElementById('statusLabel').style.color = "#00ff00";
-                
-                document.getElementById('keyDisplayBox').style.display = "block";
-                // Random Key Generation
-                const randomPart = Math.random().toString(36).substring(2, 7).toUpperCase();
-                document.getElementById('generatedKey').innerText = "ANKUSH_" + randomPart + "_5H";
-                
-                document.getElementById('verifyBtn').style.display = "none";
-                document.getElementById('adLink').style.display = "none";
-            }, 3000);
+                document.getElementById('status').innerText = "Success! Access Granted ✅";
+                document.getElementById('keyBox').style.display = "block";
+                const k = "ANKUSH-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+                document.getElementById('finalKey').innerText = k;
+                document.getElementById('vBtn').style.display = "none";
+            }, 2000);
         }
 
         function copyKey() {
-            const keyText = document.getElementById('generatedKey').innerText;
-            navigator.clipboard.writeText(keyText);
-            alert("Key Copied Successfully!");
+            const t = document.getElementById('finalKey').innerText;
+            navigator.clipboard.writeText(t);
+            alert("Key Copied: " + t);
         }
     </script>
 </body>
