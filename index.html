@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANKUSH X MODS - NEW SYSTEM</title>
+    <title>ANKUSH X MODS - INSTANT SYSTEM</title>
     <style>
         body { background-color: #0d1117; color: #ffffff; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
         .main-card { background: #161b22; border: 1px solid #30363d; border-radius: 20px; padding: 30px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -12,8 +12,7 @@
         .status-box { background: rgba(0,242,254,0.1); color: #00f2fe; padding: 10px; border-radius: 10px; font-size: 14px; margin-bottom: 25px; border: 1px solid rgba(0,242,254,0.2); }
         .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; text-decoration: none; transition: 0.3s; }
         .get-btn { background: linear-gradient(45deg, #00f2fe, #4facfe); color: white; box-shadow: 0 4px 15px rgba(79,172,254,0.4); }
-        .verify-btn { background: #21262d; color: #8b949e; border: 1px solid #30363d; }
-        .verify-btn.active { background: #238636; color: white; border: none; box-shadow: 0 4px 15px rgba(35,134,54,0.4); cursor: pointer; }
+        .verify-btn { background: #238636; color: white; border: none; box-shadow: 0 4px 15px rgba(35,134,54,0.4); cursor: pointer; }
         #keyBox { display: none; margin-top: 20px; padding: 20px; background: #0d1117; border-radius: 12px; border: 1px dashed #238636; }
         .key-text { font-size: 20px; color: #39d353; font-weight: bold; letter-spacing: 2px; display: block; margin-bottom: 10px; }
         .socials { display: flex; gap: 10px; margin-top: 20px; }
@@ -25,14 +24,12 @@
     <div class="main-card">
         <img src="https://i.supaimg.com/9f7634ce-5a01-4cbd-96ff-9200a005f5e1/0b08eeb7-2924-42b4-81d7-ab80706293e5.png" class="logo" alt="Logo">
         <h1>Ankush X Mods</h1>
-        <div class="status-box" id="status">System Status: Waiting...</div>
+        <div class="status-box" id="status">System Status: Ready!</div>
 
-        <a href="https://just2earn.com/NjPcBF" target="_blank" class="btn get-btn" onclick="startProcess()">STEP 1: GET ACCESS KEY</a>
-
-        <button id="vBtn" class="btn verify-btn" onclick="verifyNow()" disabled>STEP 2: VERIFY ADS</button>
+        <button class="btn get-btn" onclick="generateNow()">STEP 1: GET INSTANT KEY</button>
 
         <div id="keyBox">
-            <span style="color:#8b949e; font-size:12px;">YOUR 5-HOUR KEY:</span>
+            <span style="color:#8b949e; font-size:12px;">YOUR SECURE KEY:</span>
             <span class="key-text" id="finalKey">-------</span>
             <button class="btn get-btn" style="padding:10px; font-size:14px;" onclick="copyKey()">COPY TO CLIPBOARD</button>
         </div>
@@ -44,29 +41,21 @@
     </div>
 
     <script>
-        let clicked = false;
-        function startProcess() {
-            clicked = true;
-            document.getElementById('status').innerText = "Ad Opened! Wait 10 seconds...";
+        function generateNow() {
+            document.getElementById('status').innerText = "Generating Your Key...";
+            
+            // Sirf 1 second ka chota sa "processing" effect
             setTimeout(() => {
-                const btn = document.getElementById('vBtn');
-                btn.classList.add('active');
-                btn.disabled = false;
-                btn.innerText = "STEP 2: VERIFY NOW";
-                document.getElementById('status').innerText = "Verification Ready!";
-            }, 10000); // 10 seconds ka wait
-        }
-
-        function verifyNow() {
-            if(!clicked) return;
-            document.getElementById('status').innerText = "Verifying Access...";
-            setTimeout(() => {
-                document.getElementById('status').innerText = "Success! Access Granted ✅";
+                document.getElementById('status').innerText = "Success! Key Generated ✅";
                 document.getElementById('keyBox').style.display = "block";
+                
+                // Random Key
                 const k = "ANKUSH-" + Math.random().toString(36).substring(2, 8).toUpperCase();
                 document.getElementById('finalKey').innerText = k;
-                document.getElementById('vBtn').style.display = "none";
-            }, 2000);
+                
+                // Hide the button after generating
+                event.target.style.display = "none";
+            }, 1000);
         }
 
         function copyKey() {
