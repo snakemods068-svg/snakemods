@@ -3,272 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNAKE MODS OFC | PREMIUM ACCESS</title>
+    <title>ANKUSH X MODS - KEY SYSTEM</title>
     <style>
-        :root {
-            --neon-cyan: #00f2ff;
-            --neon-purple: #8e2de2;
-            --bg-dark: #020205;
-            --warning-gold: #ffea00;
-        }
-
-        body {
-            background: var(--bg-dark);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(0, 242, 255, 0.15) 0, transparent 50%), 
-                radial-gradient(at 100% 100%, rgba(142, 45, 226, 0.15) 0, transparent 50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        body::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background-image: 
-                linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-            transform: perspective(500px) rotateX(60deg);
-            bottom: -50%;
-            z-index: -1;
-            animation: moveGrid 10s linear infinite;
-        }
-
-        @keyframes moveGrid {
-            from { background-position: 0 0; }
-            to { background-position: 0 100%; }
-        }
-
-        .container {
-            width: 90%;
-            max-width: 340px;
-            background: rgba(10, 10, 20, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 242, 255, 0.4);
-            border-radius: 25px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
-            color: white;
-            z-index: 1;
-            margin: 10px;
-        }
-
-        .logo-container {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 10px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--neon-cyan);
-            box-shadow: 0 0 20px var(--neon-cyan);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-        }
-
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 0; padding: 20px; min-height: 100vh; justify-content: center; }
+        .logo-container { margin-top: 10px; border: 2px solid #ff00ff; border-radius: 20px; overflow: hidden; box-shadow: 0 0 20px #ff00ff; width: 150px; height: 150px; }
         .logo-container img { width: 100%; height: 100%; object-fit: cover; }
-
-        h2 {
-            font-size: 1.3rem;
-            margin: 5px 0 15px;
-            color: var(--neon-cyan);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--neon-cyan);
-        }
-
-        .terminal {
-            background: rgba(0, 0, 0, 0.9);
-            border-left: 4px solid var(--neon-cyan);
-            height: 65px;
-            text-align: left;
-            padding: 10px;
-            font-family: 'Consolas', monospace;
-            font-size: 0.75rem;
-            margin-bottom: 12px;
-            color: #00ffaa;
-            border-radius: 8px;
-            overflow-y: auto;
-        }
-
-        .key-display {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px dashed var(--neon-cyan);
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 8px;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .status { font-size: 0.75rem; margin-bottom: 15px; font-weight: bold; letter-spacing: 1px; }
-
-        .btn {
-            width: 100%;
-            padding: 13px;
-            margin: 5px 0;
-            border: none;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.3s ease;
-            color: white;
-            font-size: 0.85rem;
-        }
-
-        .btn-gate { background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%); }
-        .btn-gen { background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%); }
-        .btn-copy { background: rgba(255,255,255,0.05); border: 1px solid rgba(0, 242, 255, 0.5); }
-        .btn-verify { background: linear-gradient(135deg, #8e2de2, #4a00e0); }
-
-        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-        .social-container { display: flex; gap: 10px; margin-top: 15px; }
-        .social-btn { flex: 1; padding: 10px; border-radius: 10px; border: none; color: white; cursor: pointer; font-size: 0.7rem; font-weight: bold; }
-        .youtube { background: #ff0000; }
-        .telegram { background: #0088cc; }
-
-        #toast {
-            visibility: hidden;
-            background: var(--neon-cyan);
-            color: #000;
-            padding: 10px 25px;
-            border-radius: 50px;
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-weight: 900;
-            z-index: 10;
-        }
-        #toast.show { visibility: visible; animation: fadein 0.5s; }
-        @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+        h1 { color: #00ffff; text-shadow: 0 0 15px #00ffff; margin: 15px 0; font-size: 26px; text-align: center; font-weight: bold; }
+        .terminal-box { width: 95%; max-width: 400px; border: 1px solid #00ffff; background: rgba(0, 255, 255, 0.05); padding: 15px; font-family: 'Courier New', Courier, monospace; font-size: 13px; color: #00ffff; margin-bottom: 20px; border-radius: 10px; box-sizing: border-box; box-shadow: inset 0 0 10px rgba(0,255,255,0.2); }
+        .status { color: #ffd700; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .action-btn { width: 95%; max-width: 400px; padding: 16px; margin: 10px 0; border: none; border-radius: 30px; font-weight: bold; color: #fff; cursor: pointer; background: linear-gradient(45deg, #00ffff, #007bff); box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); text-decoration: none; display: block; text-align: center; transition: 0.3s; font-size: 16px; }
+        .action-btn:active { transform: scale(0.95); }
+        .btn-disabled { background: #333 !important; color: #888 !important; cursor: not-allowed; box-shadow: none; }
+        #keyDisplayBox { display: none; width: 95%; max-width: 400px; background: #111; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px dashed #00ff00; text-align: center; animation: fadeIn 0.5s; }
+        #generatedKey { font-size: 22px; color: #0fff00; letter-spacing: 3px; display: block; margin: 10px 0; text-shadow: 0 0 10px #0fff00; }
+        .social-container { display: flex; gap: 15px; width: 95%; max-width: 400px; margin-top: 25px; }
+        .social-btn { flex: 1; padding: 12px; border: none; border-radius: 15px; color: white; text-decoration: none; text-align: center; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .yt-btn { background: linear-gradient(to right, #ff0000, #b20000); box-shadow: 0 0 10px #ff0000; }
+        .tg-btn { background: linear-gradient(to right, #0088cc, #005577); box-shadow: 0 0 10px #0088cc; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-<div id="toast">ACTION SUCCESSFUL!</div>
-
-<div class="container">
     <div class="logo-container">
-        <img src="https://i.supaimg.com/9f7634ce-5a01-4cbd-96ff-9200a005f5e1/e24afaff-1125-4537-90a6-928216cd49d0.png" alt="SNAKE MODS">
+        <img src="https://i.supaimg.com/9f7634ce-5a01-4cbd-96ff-9200a005f5e1/0b08eeb7-2924-42b4-81d7-ab80706293e5.png" alt="Logo">
     </div>
 
-    <h2>SNAKE MODS OFC</h2>
+    <h1>ANKUSH X MODS</h1>
 
-    <div class="terminal" id="terminal">
-        [#] Security: ACTIVE<br>
-        [#] Step 1: Open Gatekeeper to Unlock
+    <div class="terminal-box" id="terminal">
+        [SYSTEM] Database: Online<br>
+        [SYSTEM] Protocol: Secure Key Auth<br>
+        [SYSTEM] Waiting for user verification...
     </div>
 
-    <div class="key-display" id="keyBox" style="color: rgba(255,255,255,0.3);">--- LOCKED ---</div>
-    <div class="status" id="statusText" style="color: #ff4500;">STATUS: UNAUTHORIZED</div>
+    <div class="status" id="statusLabel">STATUS: STANDBY</div>
 
-    <button class="btn btn-gate" id="gateBtn" onclick="openGatekeeper()">1. Open Gatekeeper (Watch Ad)</button>
-    <button class="btn btn-gen" id="genBtn" onclick="generateKey()" disabled>2. Generate Access Key</button>
-    <button class="btn btn-copy" onclick="copyKey()">3. Copy Key</button>
-    <button class="btn btn-verify" onclick="verifyKey()">4. Verify Access</button>
+    <a href="https://linkvertise.com/your-id/your-link" id="adLink" target="_blank" class="action-btn" onclick="startVerification()">1. GET KEY (WATCH ADS)</a>
+
+    <button class="action-btn btn-disabled" id="verifyBtn" onclick="verifyAds()" disabled>2. VERIFY COMPLETION</button>
+
+    <div id="keyDisplayBox">
+        <p style="margin:0; font-size:14px; color:#aaa;">YOUR SECURE KEY:</p>
+        <b id="generatedKey">GENERATING...</b>
+        <button class="action-btn" style="margin-top:10px; padding:10px; background: #fff; color: #000;" onclick="copyKey()">CLICK TO COPY</button>
+    </div>
 
     <div class="social-container">
-        <button class="social-btn youtube" onclick="window.open('https://youtube.com', '_blank')">YOUTUBE</button>
-        <button class="social-btn telegram" onclick="window.open('https://t.me', '_blank')">TELEGRAM</button>
+        <a href="https://youtube.com/@ekkaboy" target="_blank" class="social-btn yt-btn">YOUTUBE</a>
+        <a href="https://t.me/yourchannel" target="_blank" class="social-btn tg-btn">TELEGRAM</a>
     </div>
-</div>
 
-<script>
-    const terminal = document.getElementById('terminal');
-    const keyBox = document.getElementById('keyBox');
-    const statusText = document.getElementById('statusText');
-    const genBtn = document.getElementById('genBtn');
-    const gateBtn = document.getElementById('gateBtn');
-    
-    // Aapka Short Link
-    const adLink = "https://just2earn.com/eM7xyh77";
+    <script>
+        let isAdClicked = false;
 
-    function log(msg) {
-        const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
-        terminal.innerHTML += `<br>[${time}] ${msg}`;
-        terminal.scrollTop = terminal.scrollHeight;
-    }
-
-    function showToast(text) {
-        const t = document.getElementById('toast');
-        t.innerText = text;
-        t.classList.add("show");
-        setTimeout(() => { t.classList.remove("show"); }, 2500);
-    }
-
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('verified')) {
-            unlockStep();
-            log("System: Ad Verified! You can generate key.");
-            showToast("VERIFICATION SUCCESS!");
+        function startVerification() {
+            isAdClicked = true;
+            document.getElementById('terminal').innerHTML += "<br>[SYSTEM] Ad Page Opened...";
+            document.getElementById('statusLabel').innerText = "STATUS: COMPLETING ADS...";
+            
+            // 8 second ka wait timer taaki user ad dekhe
+            setTimeout(() => {
+                document.getElementById('verifyBtn').classList.remove('btn-disabled');
+                document.getElementById('verifyBtn').disabled = false;
+                document.getElementById('terminal').innerHTML += "<br>[SYSTEM] Verification Ready!";
+            }, 8000);
         }
-    };
 
-    function openGatekeeper() {
-        log("Opening Ad Gatekeeper...");
-        window.open(adLink, '_blank');
-    }
+        function verifyAds() {
+            if(!isAdClicked) return;
 
-    function unlockStep() {
-        genBtn.disabled = false;
-        gateBtn.innerText = "STEP 1: COMPLETED ✅";
-        gateBtn.style.background = "#00ffaa";
-        gateBtn.style.color = "#000";
-        statusText.innerText = "STATUS: AUTHORIZED";
-        statusText.style.color = "#00ffaa";
-    }
+            document.getElementById('verifyBtn').innerText = "CONNECTING TO SERVER...";
+            document.getElementById('verifyBtn').disabled = true;
 
-    function generateKey() {
-        // Mod Menu ke hisaab se 6 characters ki random string
-        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; 
-        let res = "";
-        for(let i=0; i<6; i++) res += chars[Math.floor(Math.random()*chars.length)];
-        
-        // Final Key Format: SNAKE-XXXXXX-2026 (Jo aapke Mod Menu mein hai)
-        const fullKey = "SNAKE-" + res + "-2026";
-        
-        keyBox.innerText = fullKey;
-        keyBox.style.color = "var(--neon-cyan)";
-        statusText.innerText = "STATUS: KEY ACTIVE";
-        statusText.style.color = "#00ffaa";
-        log("Key Generated & Saved to DB");
-        showToast("KEY GENERATED!");
-        
-        // ZAROORI: InfinityFree Database mein key save karna
-        // Domain ko apni hosting ke mutabik check karein
-        fetch('https://snakemods.infinityfreeapp.com/save_key.php?key=' + fullKey)
-        .then(response => response.text())
-        .then(data => log("DB Sync: " + data))
-        .catch(() => log("DB Sync: Error (Check Hosting)"));
-    }
+            setTimeout(() => {
+                document.getElementById('terminal').innerHTML += "<br>[SYSTEM] 100% Verified!";
+                document.getElementById('statusLabel').innerText = "STATUS: ACCESS GRANTED ✅";
+                document.getElementById('statusLabel').style.color = "#00ff00";
+                
+                document.getElementById('keyDisplayBox').style.display = "block";
+                
+                // Key format: ANKUSH-XXXX-2024 (Random)
+                const randomKey = Math.random().toString(36).substring(2, 8).toUpperCase();
+                document.getElementById('generatedKey').innerText = "ANKUSH-" + randomKey + "-5H";
+                
+                document.getElementById('verifyBtn').style.display = "none";
+                document.getElementById('adLink').style.display = "none";
+            }, 3000);
+        }
 
-    function copyKey() {
-        if(keyBox.innerText.includes("LOCKED")) return;
-        navigator.clipboard.writeText(keyBox.innerText);
-        showToast("COPIED!");
-    }
-
-    function verifyKey() {
-        const k = keyBox.innerText;
-        if(k.includes("LOCKED")) return;
-        
-        statusText.innerText = "STATUS: ACCESS GRANTED";
-        statusText.style.color = "var(--warning-gold)";
-        log("Access Verified!");
-        showToast("ACCESS GRANTED!");
-    }
-</script>
+        function copyKey() {
+            const keyText = document.getElementById('generatedKey').innerText;
+            navigator.clipboard.writeText(keyText);
+            alert("KEY COPIED: " + keyText + "\nNow paste it in the Mod Menu.");
+        }
+    </script>
+</body>
+</html>
