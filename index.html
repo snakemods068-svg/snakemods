@@ -5,22 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANKUSH X MODS - KEY SYSTEM</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 0; padding: 20px; min-height: 100vh; justify-content: center; }
-        .logo-container { margin-top: 10px; border: 2px solid #ff00ff; border-radius: 20px; overflow: hidden; box-shadow: 0 0 20px #ff00ff; width: 150px; height: 150px; }
-        .logo-container img { width: 100%; height: 100%; object-fit: cover; }
-        h1 { color: #00ffff; text-shadow: 0 0 15px #00ffff; margin: 15px 0; font-size: 26px; text-align: center; font-weight: bold; }
-        .terminal-box { width: 95%; max-width: 400px; border: 1px solid #00ffff; background: rgba(0, 255, 255, 0.05); padding: 15px; font-family: 'Courier New', Courier, monospace; font-size: 13px; color: #00ffff; margin-bottom: 20px; border-radius: 10px; box-sizing: border-box; box-shadow: inset 0 0 10px rgba(0,255,255,0.2); }
-        .status { color: #ffd700; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .action-btn { width: 95%; max-width: 400px; padding: 16px; margin: 10px 0; border: none; border-radius: 30px; font-weight: bold; color: #fff; cursor: pointer; background: linear-gradient(45deg, #00ffff, #007bff); box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); text-decoration: none; display: block; text-align: center; transition: 0.3s; font-size: 16px; }
-        .action-btn:active { transform: scale(0.95); }
-        .btn-disabled { background: #333 !important; color: #888 !important; cursor: not-allowed; box-shadow: none; }
-        #keyDisplayBox { display: none; width: 95%; max-width: 400px; background: #111; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px dashed #00ff00; text-align: center; animation: fadeIn 0.5s; }
-        #generatedKey { font-size: 22px; color: #0fff00; letter-spacing: 3px; display: block; margin: 10px 0; text-shadow: 0 0 10px #0fff00; }
-        .social-container { display: flex; gap: 15px; width: 95%; max-width: 400px; margin-top: 25px; }
-        .social-btn { flex: 1; padding: 12px; border: none; border-radius: 15px; color: white; text-decoration: none; text-align: center; font-weight: bold; font-size: 14px; transition: 0.3s; }
-        .yt-btn { background: linear-gradient(to right, #ff0000, #b20000); box-shadow: 0 0 10px #ff0000; }
-        .tg-btn { background: linear-gradient(to right, #0088cc, #005577); box-shadow: 0 0 10px #0088cc; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        body { background-color: #000; color: #fff; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; margin: 0; padding: 20px; }
+        .logo-container { margin-top: 20px; border: 2px solid #ff00ff; border-radius: 15px; overflow: hidden; box-shadow: 0 0 15px #ff00ff; }
+        .logo-container img { width: 150px; display: block; }
+        h1 { color: #00ffff; text-shadow: 0 0 10px #00ffff; margin: 20px 0; font-size: 24px; text-align: center; }
+        .terminal-box { width: 90%; max-width: 400px; border: 1px solid #00ffff; background: rgba(0, 0, 0, 0.5); padding: 15px; font-family: 'Courier New', monospace; font-size: 14px; color: #00ffff; margin-bottom: 20px; border-radius: 5px; box-sizing: border-box; }
+        .status { color: #ffd700; font-weight: bold; margin-bottom: 20px; text-transform: uppercase; }
+        .action-btn { width: 90%; max-width: 400px; padding: 15px; margin: 8px 0; border: none; border-radius: 25px; font-weight: bold; color: #000; cursor: pointer; background: linear-gradient(to right, #00ffff, #007bff); box-shadow: 0 0 10px #007bff; text-decoration: none; display: block; text-align: center; }
+        .btn-disabled { filter: grayscale(1); cursor: not-allowed; opacity: 0.6; }
+        #keyDisplayBox { display: none; width: 90%; max-width: 400px; background: #222; padding: 10px; border-radius: 10px; margin-top: 10px; border: 1px dashed #00ffff; text-align: center; }
+        #generatedKey { font-size: 18px; color: #00ff00; letter-spacing: 2px; }
+        .social-container { display: flex; gap: 10px; width: 90%; max-width: 400px; margin-top: 20px; }
+        .social-btn { flex: 1; padding: 12px; border: none; border-radius: 25px; color: white; text-decoration: none; text-align: center; font-weight: bold; background: linear-gradient(to right, #ff00ff, #ff1493); }
     </style>
 </head>
 <body>
@@ -32,26 +28,24 @@
     <h1>ANKUSH X MODS</h1>
 
     <div class="terminal-box" id="terminal">
-        [SYSTEM] Database: Online<br>
-        [SYSTEM] Protocol: Secure Key Auth<br>
-        [SYSTEM] Waiting for user verification...
+        [SYSTEM] Status: Ready...<br>
+        [SYSTEM] Step 1: Click 'GET KEY' to watch ads.
     </div>
 
     <div class="status" id="statusLabel">STATUS: STANDBY</div>
 
-    <a href="https://just2earn.com/NjPcBF" id="adLink" target="_blank" class="action-btn" onclick="startVerification()">1. GET KEY (WATCH ADS)</a>
 
     <button class="action-btn btn-disabled" id="verifyBtn" onclick="verifyAds()" disabled>2. VERIFY COMPLETION</button>
 
     <div id="keyDisplayBox">
-        <p style="margin:0; font-size:14px; color:#aaa;">YOUR SECURE KEY:</p>
-        <b id="generatedKey">GENERATING...</b>
-        <button class="action-btn" style="margin-top:10px; padding:10px; background: #fff; color: #000;" onclick="copyKey()">CLICK TO COPY</button>
+        <p style="margin:0; font-size:12px; color:#aaa;">YOUR 5-HOUR KEY:</p>
+        <b id="generatedKey">WAITING...</b>
+        <button class="action-btn" style="margin-top:10px; padding:8px;" onclick="copyKey()">COPY KEY</button>
     </div>
 
     <div class="social-container">
-        <a href="https://youtube.com/@ekkaboy" target="_blank" class="social-btn yt-btn">YOUTUBE</a>
-        <a href="https://t.me/yourchannel" target="_blank" class="social-btn tg-btn">TELEGRAM</a>
+        <a href="YOUR_YT_LINK" target="_blank" class="social-btn">YOUTUBE</a>
+        <a href="YOUR_TG_LINK" target="_blank" class="social-btn">TELEGRAM</a>
     </div>
 
     <script>
@@ -59,33 +53,32 @@
 
         function startVerification() {
             isAdClicked = true;
-            document.getElementById('terminal').innerHTML += "<br>[SYSTEM] Ad Page Opened...";
-            document.getElementById('statusLabel').innerText = "STATUS: COMPLETING ADS...";
+            document.getElementById('terminal').innerHTML += "<br>[SYSTEM] Ad Link Opened. Please wait 15-30 seconds on ad page.";
+            document.getElementById('statusLabel').innerText = "STATUS: WAITING FOR ADS...";
             
-            // 8 second ka timer taaki user ad page par rahe
+            // 5 second baad verify button enable hoga
             setTimeout(() => {
                 document.getElementById('verifyBtn').classList.remove('btn-disabled');
                 document.getElementById('verifyBtn').disabled = false;
-                document.getElementById('terminal').innerHTML += "<br>[SYSTEM] Verification Ready!";
-            }, 8000);
+                document.getElementById('terminal').innerHTML += "<br>[SYSTEM] You can now Verify.";
+            }, 5000);
         }
 
         function verifyAds() {
             if(!isAdClicked) return;
 
-            document.getElementById('verifyBtn').innerText = "CONNECTING TO SERVER...";
+            document.getElementById('verifyBtn').innerText = "VERIFYING...";
             document.getElementById('verifyBtn').disabled = true;
 
             setTimeout(() => {
-                document.getElementById('terminal').innerHTML += "<br>[SYSTEM] 100% Verified!";
-                document.getElementById('statusLabel').innerText = "STATUS: ACCESS GRANTED ✅";
+                document.getElementById('terminal').innerHTML += "<br>[SYSTEM] Verification Success! Key Generated.";
+                document.getElementById('statusLabel').innerText = "STATUS: VERIFIED ✅";
                 document.getElementById('statusLabel').style.color = "#00ff00";
                 
                 document.getElementById('keyDisplayBox').style.display = "block";
-                
                 // Random Key Generation
-                const randomKey = Math.random().toString(36).substring(2, 8).toUpperCase();
-                document.getElementById('generatedKey').innerText = "ANKUSH-" + randomKey + "-5H";
+                const randomPart = Math.random().toString(36).substring(2, 7).toUpperCase();
+                document.getElementById('generatedKey').innerText = "ANKUSH_" + randomPart + "_5H";
                 
                 document.getElementById('verifyBtn').style.display = "none";
                 document.getElementById('adLink').style.display = "none";
@@ -95,7 +88,7 @@
         function copyKey() {
             const keyText = document.getElementById('generatedKey').innerText;
             navigator.clipboard.writeText(keyText);
-            alert("KEY COPIED: " + keyText);
+            alert("Key Copied Successfully!");
         }
     </script>
 </body>
