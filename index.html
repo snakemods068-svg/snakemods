@@ -39,7 +39,7 @@
 
     <div class="status" id="statusLabel">STATUS: STANDBY</div>
 
-    <a href="https://linkvertise.com/your-id/your-link" id="adLink" target="_blank" class="action-btn" onclick="startVerification()">1. GET KEY (WATCH ADS)</a>
+    <a href="https://just2earn.com/NjPcBF" id="adLink" target="_blank" class="action-btn" onclick="startVerification()">1. GET KEY (WATCH ADS)</a>
 
     <button class="action-btn btn-disabled" id="verifyBtn" onclick="verifyAds()" disabled>2. VERIFY COMPLETION</button>
 
@@ -62,7 +62,7 @@
             document.getElementById('terminal').innerHTML += "<br>[SYSTEM] Ad Page Opened...";
             document.getElementById('statusLabel').innerText = "STATUS: COMPLETING ADS...";
             
-            // 8 second ka wait timer taaki user ad dekhe
+            // 8 second ka timer taaki user ad page par rahe
             setTimeout(() => {
                 document.getElementById('verifyBtn').classList.remove('btn-disabled');
                 document.getElementById('verifyBtn').disabled = false;
@@ -70,8 +70,8 @@
             }, 8000);
         }
 
-        <a href="https://just2earn.com/NjPcBF" id="adLink" target="_blank" class="action-btn" onclick="startVerification()">1. GET KEY (WATCH ADS)</a>
-
+        function verifyAds() {
+            if(!isAdClicked) return;
 
             document.getElementById('verifyBtn').innerText = "CONNECTING TO SERVER...";
             document.getElementById('verifyBtn').disabled = true;
@@ -83,7 +83,7 @@
                 
                 document.getElementById('keyDisplayBox').style.display = "block";
                 
-                // Key format: ANKUSH-XXXX-2024 (Random)
+                // Random Key Generation
                 const randomKey = Math.random().toString(36).substring(2, 8).toUpperCase();
                 document.getElementById('generatedKey').innerText = "ANKUSH-" + randomKey + "-5H";
                 
@@ -95,7 +95,7 @@
         function copyKey() {
             const keyText = document.getElementById('generatedKey').innerText;
             navigator.clipboard.writeText(keyText);
-            alert("KEY COPIED: " + keyText + "\nNow paste it in the Mod Menu.");
+            alert("KEY COPIED: " + keyText);
         }
     </script>
 </body>
